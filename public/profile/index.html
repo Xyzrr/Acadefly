@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, initial-scale=1">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<title>Profile</title>
+</head>
+<body class="profile-page">
+
+	<nav id="nav-not-authenticated" data-topbar role="navigation">
+		<ul class="left">
+			<li><a href="../">Tutor on the Go</a></li>
+		</ul>
+		<ul class="right">
+		    <li><a href="#" id="logout-button">Log out</a></li>
+		</ul>
+	</nav>
+
+	<div class="row basic-info">
+		<img class="profile-picture" src="http://ohiotheatretoledo.org/wp-content/themes/ohiotheatre/img/profile_placeholder.png" alt="">
+		<h1 id="user-name"></h1>
+		<p id="user-grade"></p>
+	</div>
+
+	<div class="row basic-stats">
+		<ul>
+			<li><span>$<span id="user-charge"></span>/h</span><label for="charge">Charge</label></li>
+			<li><span>9k</span><label for="views">Views</label></li>
+			<li><span>34</span><label for="tutees">Tutees</label></li>
+		</ul>
+		<button class="radius contact-button" data-reveal-id="edit-basic-info-modal"><i class="fa fa-edit"></i> Edit</button>
+	</div>
+
+	<div class="row advanced-info">
+		<div class="row">
+			<label>Subjects
+				<button class="edit-profile-button"  data-reveal-id="edit-subjects-modal"><i class='fa fa-edit'></i></button>
+			</label>
+			<div class="content">
+				<p id="user-subjects" class="subjects"></p>
+			</div>
+		</div>
+		<div class="row">
+			<label for="summary">About Me
+				<button class="edit-profile-button"  data-reveal-id="edit-bio-modal"><i class='fa fa-edit'></i></button>
+			</label>
+			<div class="content">
+				<p id="user-summary" class="summary"></p>
+				<p id="user-bio" class="biography"></p>	
+			</div>
+		</div>
+		<div class="row">
+			<label for="availability">Availability
+				<button class="edit-profile-button"  data-reveal-id="edit-availability-modal"><i class='fa fa-edit'></i></button>
+			</label>
+	        <div id="availability-grid" class="availability-grid" data-multiple="true">
+	        	<div class="header-row">
+	        		<div></div><!--
+	        		--><div>Before school</div><!--
+	        		--><div>After school</div>
+	        	</div>
+	        	<div class="selectable-grid-row">
+	        		<div class="header-column">Monday</div><!--
+	        		--><div data-id="m1" class="selectable-grid-column">Monday morning</div><!--
+	        		--><div data-id="m2" class="selectable-grid-column">Monday afternoon</div>
+	        	</div>
+	        	<div class="selectable-grid-row">
+	        		<div class="header-column">Tuesday</div><!--
+	        		--><div data-id="t1" class="selectable-grid-column">Tuesday morning</div><!--
+	        		--><div data-id="t2" class="selectable-grid-column">Tuesday afternoon</div>
+	        	</div>
+	        	<div class="selectable-grid-row">
+	        		<div class="header-column">Wednesday</div><!--
+	        		--><div data-id="w1" class="selectable-grid-column">Wednesday morning</div><!--
+	        		--><div data-id="w2" class="selectable-grid-column">Wednesday afternoon</div>
+	        	</div>
+	        	<div class="selectable-grid-row">
+	        		<div class="header-column">Thursday</div><!--
+	        		--><div data-id="th1" class="selectable-grid-column">Thursday morning</div><!--
+	        		--><div data-id="th2" class="selectable-grid-column">Thursday afternoon</div>
+	        	</div>
+	        	<div class="selectable-grid-row">
+	        		<div class="header-column">Friday</div><!--
+	        		--><div data-id="f1" class="selectable-grid-column">Friday morning</div><!--
+	        		--><div data-id="f2" class="selectable-grid-column">Friday afternoon</div>
+	        	</div>
+	        </div>
+		</div>
+	</div>
+
+	<div id="edit-basic-info-modal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2>Edit Basics</h2>
+		<form id="edit-basic-info-form" data-abide="ajax">
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		        <input type="text" id="edit-first-name" name="firstName" placeholder="First Name" required pattern="[a-zA-Z]+" />
+                <small class="error">First name is required and must be letters only.</small>
+		    </div>
+		  </div>
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		        <input type="text" id="edit-last-name" name="lastName" placeholder="Last Name" required pattern="[a-zA-Z]+" />
+                <small class="error">Last name is required and must be letters only.</small>
+		    </div>
+		  </div>
+  		  <div class="row collapse">
+		    <div class="large-12 columns">
+		      <label>Grade
+		        <select name="grade" id="edit-grade">
+		          <option value="9">9 - Freshman</option>
+		          <option value="10">10 - Sophomore</option>
+  		          <option value="11">11 - Junior</option>
+		          <option value="12">12 - Senior</option>
+		        </select>
+		      </label>
+		    </div>
+		  </div>
+  		  <div class="row collapse prefix-round postfix-round">
+	      	<label>Charge</label>
+	    	<div class="small-2 columns">
+	    		<span class="prefix">$</span>
+	    	</div>
+	    	<div class="small-7 columns">
+		        <input type="number" id="edit-charge" name="charge" placeholder="Charge" required />
+	            <small class="error">Charge is required and must be a number.</small>
+	    	</div>
+	    	<div class="small-3 columns">
+	    		<span class="postfix">/hour</span>
+	    	</div>
+		  </div>
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		      <input type="submit" id="save-basic-info-button" class="button expand" value="Save" />
+		    </div>
+		  </div>
+		</form>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
+	<div id="edit-subjects-modal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2>Edit Subjects</h2>
+		<form id="edit-subjects-form" data-abide="ajax">
+		  <div class="row collapse">
+		  	<div class="large-12 columns">
+		  		<ul id="edit-subjects" class="editable-list">
+			  	</ul>
+		  		<div class="row collapse">
+		  			<div class="small-12 columns">
+					  	<input type="text" class="subject-input" id="add-subject-input" placeholder="Add Subject..."/>		  				
+		  			</div>
+		  		</div>
+		  	</div>
+		  </div>
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		      <input type="submit" id="save-bio-button" class="button expand" value="Save" />
+		    </div>
+		  </div>
+		 </form>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
+	<div id="edit-bio-modal" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2>Edit About Me</h2>
+		<form id="edit-bio-form" data-abide="ajax">
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		    	<label for="summary">Short Summary
+			        <textarea type="text" id="edit-summary-textarea" name="summary" required rows="2"></textarea>
+		    	</label>
+		    </div>
+		  </div>
+  		  <div class="row collapse">
+		    <div class="large-12 columns">
+		    	<label for="biography">Full Biography
+			        <textarea type="text" id="edit-bio-textarea" name="bio" required rows="16"></textarea>
+			    </label>
+		    </div>
+		  </div>
+		  <div class="row collapse">
+		    <div class="large-12 columns">
+		      <input type="submit" id="save-bio-button" class="button expand" value="Save" />
+		    </div>
+		  </div>
+		</form>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
+	<div id="edit-availability-modal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2>Edit Availability</h2>
+		<form id="edit-availability-form" data-abide="ajax">
+		  <div class="row">
+		    <div class="large-12 columns">
+		        <div id="edit-availability-grid" class="selectable-grid" data-multiple="true">
+		        	<div class="header-row">
+		        		<div></div><!--
+		        		--><div>Before school</div><!--
+		        		--><div>After school</div>
+		        	</div>
+		        	<div class="selectable-grid-row">
+		        		<div class="header-column">Monday</div><!--
+		        		--><div data-id="m1" class="selectable-grid-column">Monday morning</div><!--
+		        		--><div data-id="m2" class="selectable-grid-column">Monday afternoon</div>
+		        	</div>
+		        	<div class="selectable-grid-row">
+		        		<div class="header-column">Tuesday</div><!--
+		        		--><div data-id="t1" class="selectable-grid-column">Tuesday morning</div><!--
+		        		--><div data-id="t2" class="selectable-grid-column">Tuesday afternoon</div>
+		        	</div>
+		        	<div class="selectable-grid-row">
+		        		<div class="header-column">Wednesday</div><!--
+		        		--><div data-id="w1" class="selectable-grid-column">Wednesday morning</div><!--
+		        		--><div data-id="w2" class="selectable-grid-column">Wednesday afternoon</div>
+		        	</div>
+		        	<div class="selectable-grid-row">
+		        		<div class="header-column">Thursday</div><!--
+		        		--><div data-id="th1" class="selectable-grid-column">Thursday morning</div><!--
+		        		--><div data-id="th2" class="selectable-grid-column">Thursday afternoon</div>
+		        	</div>
+		        	<div class="selectable-grid-row">
+		        		<div class="header-column">Friday</div><!--
+		        		--><div data-id="f1" class="selectable-grid-column">Friday morning</div><!--
+		        		--><div data-id="f2" class="selectable-grid-column">Friday afternoon</div>
+		        	</div>
+		        </div>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="large-12 columns">
+		      <input type="submit" id="save-bio-button" class="button expand" value="Save" />
+		    </div>
+		  </div>
+		</form>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+	</div>
+
+	<script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="../js/script-min.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
+</html>
